@@ -44,7 +44,7 @@ var actualMazeHeight = (mazeHeight - 1) * sz;
 var amountOfTime = 5;
 
 var wonGame = false;
-var numberOfItems = 2;
+var numberOfItems = 0;
 var numberCaught = 0;
 
 var endX=[];
@@ -101,8 +101,8 @@ function drawImage(){
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
           document.getElementById("title").innerHTML = "YOU WON!!! YOU ARE A-MAZE-ING!!!";
           var winner = new Image();
-          winner.src = "win.png";
-          cP.drawImage(winner,(canvasPlayer.width-winner.width)/2, (canvasPlayer.height-winner.height)/2);
+          winner.src = "win.jpg";
+          cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
         }
 }
 
@@ -272,10 +272,10 @@ function checkKey(e)
 
     if(e.keyCode == plus)
     {
-        speed+= 1;
+        speed++;
         if(speed > maxSpeed)
         {
-          speed -= 1;
+          speed--;
         }
     }
     if(e.keyCode == minus)
