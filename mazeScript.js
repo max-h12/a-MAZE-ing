@@ -41,10 +41,14 @@ var mazeHeight = 20;
 var actualMazeWidth = (mazeWidth - 1) * sz;
 var actualMazeHeight = (mazeHeight - 1) * sz;
 
+var amountOfTime = 5;
 
-//position of goal image.  530, 35
-var endX = 10;
-var endY = 10;
+var wonGame = false;
+var numberOfItems = 3;
+var numberCaught = 0;
+
+var endX=[];
+var endY=[];
 
 //define keypresses
 var left = '37';
@@ -54,73 +58,73 @@ var down = '40';
 var plus = '187';
 var minus = '189';
 
-
-console.log("Width: " + actualMazeWidth);
-
-
 var marginX = ((cP.canvas.width) - (mazeWidth*sz))/2;
 var marginY = ((cP.canvas.height) - (mazeHeight*sz))/2;
 
-
 document.onkeydown = checkKey;
+//debugging purposes
 document.onmousemove = function()
 {
   console.log("P:" + event.clientX + "," + event.clientY);
 }
-
 
 /* Draws all images that are fixed within canvas
 *This includeds the main board and goal */
 function drawImage(){
         if( Math.abs(yPlayer - endY) <= 5 && Math.abs(xPlayer - endX) <= 5 && xPlayer>0 && yPlayer>0)
         {
-          console.log("test");
+          if(numberOfItems == numberCaught){
+            wonGame = true;
             cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
             cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
             document.getElementById("title").innerHTML = "YOU WON!!! YOU ARE A-MAZE-ING!!!";
             var winner = new Image();
-            winner.src = "https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fimages.hellogiggles.com%2Fuploads%2F2016%2F12%2F09032937%2FSuccess-Kid.jpg&w=700&c=sc&poi=face&q=85";
+            winner.src = "win.webp";
             cP.drawImage(winner,(canvasPlayer.width-winner.width)/2, (canvasPlayer.height-winner.height)/2);
+          }
+          else {
+            numberCaught++;
+          }
         }
         else
         {
-
             cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
-            cP.drawImage(goal, endX, endY, playerSize, playerSize);
+            for(var i = 0; i<numberOfItems; i++)
+            {
+              cP.drawImage(goal, endX[i], endY[i], playerSize, playerSize);
+            }
             cP.drawImage(player, xPlayer, yPlayer, playerSize, playerSize);
         }
 }
 
 /*Places the goal random in the maze*/
 function randomEnd(){  //0 is end, 1 is player
+  for(var i = 0; i<numberOfItems; i++){
+    var maxX =  cP.canvas.width*.5 + (actualMazeWidth*.5);
+    var minX = cP.canvas.width*.5 - (actualMazeWidth * .5);
+    var maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5);
+    var minY =  cP.canvas.height*.5 - (actualMazeHeight * .5);
 
-  console.log(marginX);
-  //I have no idea how to randomly place the chese
-  var maxX =  cP.canvas.width*.5 + (actualMazeWidth*.5);
-  var minX = cP.canvas.width*.5 - (actualMazeWidth * .5);
-  var maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5);
-  var minY =  cP.canvas.height*.5 - (actualMazeHeight * .5);
-  console.log(minX +  " to " +  maxX);
-  console.log(minY +  " to " +  maxY);
-  tempEndX = Math.floor(Math.random()*(maxX-minX))+minX;
-  tempEndY = Math.floor(Math.random()*(maxY-minY)) + minY;
+    tempEndX = Math.floor(Math.random()*(maxX-minX))+minX;
+    tempEndY = Math.floor(Math.random()*(maxY-minY)) + minY;
 
-    while(!canMoveThere(tempEndX,tempEndY))
-    {
-        console.log("run");
-        maxX = cP.canvas.width*.5 + (actualMazeWidth*.5) - sz;
-        minX = cP.canvas.width*.5 - (actualMazeWidth * .5) + sz;
-        maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5) - sz;
-        minY =  cP.canvas.height*.5 - (actualMazeHeight * .5) + sz;
-        console.log(minX +  " to " +  maxX)
-        tempEndX = Math.floor(Math.random()*(maxX-minX))+minX;
-        tempEndY = Math.floor(Math.random()*(maxY-minY)) + minY;
-        console.log(tempEndX);
-        console.log(tempEndY);
-    }
+      while(!canMoveThere(tempEndX,tempEndY))
+      {
+          console.log("run");
+          maxX = cP.canvas.width*.5 + (actualMazeWidth*.5) - sz;
+          minX = cP.canvas.width*.5 - (actualMazeWidth * .5) + sz;
+          maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5) - sz;
+          minY =  cP.canvas.height*.5 - (actualMazeHeight * .5) + sz;
+          console.log(minX +  " to " +  maxX)
+          tempEndX = Math.floor(Math.random()*(maxX-minX))+minX;
+          tempEndY = Math.floor(Math.random()*(maxY-minY)) + minY;
+          console.log(tempEndX);
+          console.log(tempEndY);
+      }
 
-      endX = tempEndX;
-      endY = tempEndY;
+        endX[i] = tempEndX;
+        endY[i] = tempEndY;
+      }
 }
 /*Draw the main maze*/
 function drawMaze(){
@@ -143,6 +147,19 @@ function drawMaze(){
              }
          }
 
+}
+
+function startTimer()
+{
+    if(!wonGame){
+      setTimeout(lost, amountOfTime*1000);
+    }
+}
+
+function lost()
+{
+  cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
+  document.getElementById("title").innerHTML = "YOU LOST.";
 }
 
 
