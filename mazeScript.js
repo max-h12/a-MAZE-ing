@@ -27,19 +27,19 @@ var playerSize = 20;
 var sz = playerSize + 18;
 
 var playerU = new Image();
-playerU.src = "mouseU.png";
+playerU.src = "img/mouse/mouseU.png";
 
 var playerD = new Image();
-playerD.src = "mouseD.png";
+playerD.src = "img/mouse/mouseD.png";
 
 var playerR = new Image();
-playerR.src = "mouseR.png";
+playerR.src = "img/mouse/mouseR.png";
 
 var playerL = new Image();
-playerL.src = "mouseL.png";
+playerL.src = "img/mous/mouseL.png";
 
 var goal = new Image();
-goal.src = "cheese.png";
+goal.src = "img/cheese.png";
 
 //player position
 var xPlayer = 0;
@@ -129,7 +129,7 @@ function drawImage(pos){
           {
             cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
           }
-          winner.src = "win.jpg";
+          winner.src = "img/win.jpg";
 
         }
 }
@@ -284,23 +284,18 @@ function checkKey(e)
     if(e.keyCode == down)
     {
         e.preventDefault();
-        // for(var i = 0; i<speed; i++)
-        // {
-        //     yPlayer++;
-        //     if(canMoveThere(xPlayer, yPlayer))
-        //     {
-        //       drawImage("down");
-        //     }
-        //     else {
-        //       yPlayer--;
-        //     }
-        // }
-        yPlayer += speed * .40;
-        if(canMoveThere(xPlayer, yPlayer))
+        for(var i = 0; i<speed; i++)
         {
-
-            drawImage("down");
+            yPlayer++;
+            if(canMoveThere(xPlayer, yPlayer))
+            {
+              drawImage("down");
+            }
+            else {
+              yPlayer--;
+            }
         }
+
 
     }
 
