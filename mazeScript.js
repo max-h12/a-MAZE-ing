@@ -26,8 +26,18 @@ var playerSize = 20;
 
 var sz = playerSize + 18;
 
-var player = new Image();
-player.src = "mouse.png";
+var playerU = new Image();
+playerU.src = "mouseU.png";
+
+var playerD = new Image();
+playerD.src = "mouseD.png";
+
+var playerR = new Image();
+playerR.src = "mouseR.png";
+
+var playerL = new Image();
+playerL.src = "mouseL.png";
+
 var goal = new Image();
 goal.src = "cheese.png";
 
@@ -44,7 +54,7 @@ var actualMazeHeight = (mazeHeight - 1) * sz;
 var amountOfTime = 5;
 
 var wonGame = false;
-var numberOfItems = 0;
+var numberOfItems = 2;
 var numberCaught = 0;
 
 var endX=[];
@@ -67,15 +77,11 @@ var marginX = ((cP.canvas.width) - (mazeWidth*sz))/2;
 var marginY = ((cP.canvas.height) - (mazeHeight*sz))/2;
 
 document.onkeydown = checkKey;
-//debugging purposes
-document.onmousemove = function()
-{
-  console.log("P:" + event.clientX + "," + event.clientY);
-}
+
 
 /* Draws all images that are fixed within canvas
 *This includeds the main board and goal */
-function drawImage(){
+function drawImage(pos){
     for(var n = 0; n<numberOfItems; n++){
           if( Math.abs(yPlayer - endY[n]) <= 10 && Math.abs(xPlayer - endX[n]) <= 10 && xPlayer>0 && yPlayer>0)
           {
@@ -91,6 +97,24 @@ function drawImage(){
               {
                 cP.drawImage(goal, endX[i], endY[i], playerSize, playerSize);
               }
+              var player;
+              if(pos == "left")
+              {
+                player = playerL;
+              }
+              if(pos == "right")
+              {
+                player = playerR;
+              }
+              if(pos == "up")
+              {
+                player = playerU;
+              }
+              if(pos == "down")
+              {
+                player = playerD;
+              }
+
               cP.drawImage(player, xPlayer, yPlayer, playerSize, playerSize);
           }
         }
@@ -101,8 +125,12 @@ function drawImage(){
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
           document.getElementById("title").innerHTML = "YOU WON!!! YOU ARE A-MAZE-ING!!!";
           var winner = new Image();
+          winner.onload = function()
+          {
+            cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
+          }
           winner.src = "win.jpg";
-          cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
+
         }
 }
 
@@ -163,7 +191,6 @@ function lost()
 function canMoveThere(x, y)
 {
     var canBeThere = true;
-    //x > marginX+sz && y > marginY+sz
     if(x > 0 && y > 0){
         var color = cM.getImageData(x, y, playerSize, playerSize);
         var p = color.data;
@@ -216,7 +243,7 @@ function checkKey(e)
             xPlayer--;
             if(canMoveThere(xPlayer, yPlayer))
             {
-              drawImage();
+              drawImage("left");
             }
             else {
               xPlayer++;
@@ -232,7 +259,7 @@ function checkKey(e)
             xPlayer++;
             if(canMoveThere(xPlayer, yPlayer))
             {
-              drawImage();
+              drawImage("right");
             }
             else {
               xPlayer--;
@@ -247,7 +274,7 @@ function checkKey(e)
             yPlayer--;
             if(canMoveThere(xPlayer, yPlayer))
             {
-              drawImage();
+              drawImage("up");
             }
             else {
               yPlayer++;
@@ -257,17 +284,24 @@ function checkKey(e)
     if(e.keyCode == down)
     {
         e.preventDefault();
-        for(var i = 0; i<speed; i++)
+        // for(var i = 0; i<speed; i++)
+        // {
+        //     yPlayer++;
+        //     if(canMoveThere(xPlayer, yPlayer))
+        //     {
+        //       drawImage("down");
+        //     }
+        //     else {
+        //       yPlayer--;
+        //     }
+        // }
+        yPlayer += speed * .40;
+        if(canMoveThere(xPlayer, yPlayer))
         {
-            yPlayer++;
-            if(canMoveThere(xPlayer, yPlayer))
-            {
-              drawImage();
-            }
-            else {
-              yPlayer--;
-            }
+
+            drawImage("down");
         }
+
     }
 
     if(e.keyCode == plus)
@@ -283,20 +317,22 @@ function checkKey(e)
         speed--;
         if(speed < minSpeed)
         {
-          speed ++;
+          speed++;
         }
     }
 
+
     document.getElementById("speed").innerHTML = "SPEED: " + speed;
 
-    if(!mazeDrawn)
+    if(mazeDrawn == false)
     {
+        mazeDrawn = true;
         drawMaze();
         randomEnd();
 
         cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
-        drawImage();
-        mazeDrawn = true;
+        drawImage("right");
+
     }
 
 }
