@@ -1,12 +1,3 @@
-
-window.onload = function(){
-  drawMaze();
-  randomEnd();
-  drawImage("right");
-}
-
-document.onkeydown = checkKey;
-
 /* Redraws the goals and the player after every round.
 * Checks if the player got a goal piece and if the player won*/
 function drawImage(pos){
