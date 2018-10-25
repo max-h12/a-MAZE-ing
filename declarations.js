@@ -57,11 +57,11 @@ var playerL = new Image();
 playerL.src = "img/mouse/mouseL.png";
 
 var goal = new Image();
-goal.src = "img/cheese.png";
+goal.src = "img/mouse/cheese.png";
 
 /*Goal and Game Player Declarations*/
 var wonGame = false;
-var numberOfItems = 1;
+var numberOfItems = 10;
 var numberCaught = 0;
 var endX=[];
 var endY=[];
