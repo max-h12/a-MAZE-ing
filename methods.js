@@ -106,6 +106,11 @@ function canMoveThere(x, y)
             }
         }
       }
+      else if(x < 0 || y < 0)
+      {
+        console.log(x + "," + y);
+        canBeThere = false;
+      }
     return canBeThere;
 }
 

@@ -39,7 +39,7 @@ var maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5) - 2*sz;
 var minY =  cP.canvas.height*.5 - (actualMazeHeight * .5) + sz;
 
 var marginX = ((cP.canvas.width) - (mazeWidth*sz))/2;
-var marginY = ((cP.canvas.height) - (mazeHeight*sz))/2 + cP.canvas.height/20;
+var marginY = ((cP.canvas.height) - (mazeHeight*sz))/2 + cP.canvas.height/50;
 
 
 
