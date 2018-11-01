@@ -73,3 +73,6 @@ var up = '38';
 var down = '40';
 var plus = '187';
 var minus = '189';
+
+var startTime = new Date().getTime();
+var timeLimit = 30;
