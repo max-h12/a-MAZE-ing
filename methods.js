@@ -36,6 +36,7 @@ function drawImage(pos){
               cP.drawImage(player, xPlayer, yPlayer, playerSize, playerSize);
           }
         }
+
         if(numberOfItems == numberCaught){
           wonGame = true;
           cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
@@ -88,7 +89,6 @@ function drawMaze(){
                 }
              }
          }
-
 }
 
 /*Returns true or false based on wheter a player
@@ -249,5 +249,11 @@ function checkKey(e)
           speed++;
         }
     }
+
+    var curTime = new Date().getTime();
+    var timeLeft = Math.round((timeLimit - (0.001*(curTime - startTime)))*100)/100;
+    var remaining = numberOfItems - numberCaught;
+    document.getElementById("score").innerHTML = "REMINING GOALS: " + remaining;
+    document.getElementById("time").innerHTML = "TIME LEFT: " + timeLeft;
     document.getElementById("speed").innerHTML = "SPEED: " + speed;
 }

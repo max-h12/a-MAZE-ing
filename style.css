@@ -37,3 +37,19 @@ body{
   -webkit-text-fill-color: transparent;
   font-size: 2vw;
 }
+
+#score
+{
+ background: cyan;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-size: 2vw;
+}
+
+#time
+{
+ background: red;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-size: 2vw;
+}
