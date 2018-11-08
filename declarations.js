@@ -61,7 +61,7 @@ goal.src = "img/mouse/cheese.png";
 
 /*Goal and Game Player Declarations*/
 var wonGame = false;
-var numberOfItems = 10;
+var numberOfItems = 1;
 var numberCaught = 0;
 var endX=[];
 var endY=[];

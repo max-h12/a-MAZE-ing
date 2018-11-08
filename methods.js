@@ -41,13 +41,14 @@ function drawImage(pos){
           wonGame = true;
           cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
-          document.getElementById("title").innerHTML = "YOU WON!!! YOU ARE A-MAZE-ING!!!";
-          var winner = new Image();
-          winner.onload = function()
-          {
-            cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
-          }
-          winner.src = "img/win.jpg";
+          document.getElementById("title").innerHTML = "Click The ENTER Key To Continue";
+          //This image is tainting the canvas,  add another layer
+          // var winner = new Image();
+          // winner.onload = function()
+          // {
+          //   cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
+          // }
+          // winner.src = "img/win.jpg";
 
         }
 }
@@ -207,6 +208,30 @@ function checkKey(e)
               yPlayer--;
             }
         }
+    }
+
+    if(e.keyCode == 13 && wonGame == true)
+    {
+
+        e.preventDefault();
+
+        numberCaught = 0;
+
+        document.getElementById("title").innerHTML = "The A-MAZE-ing Game";
+
+        cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
+        cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
+
+        xPlayer = 0;
+        yPlayer = 0;
+        wonGame = false;
+        speed = 1;
+        console.log("Enter");
+
+        drawMaze();
+
+        randomEnd();
+        drawImage("right");
     }
 
     if(e.keyCode == plus)

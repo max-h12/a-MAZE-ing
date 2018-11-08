@@ -4,5 +4,4 @@ window.onload = function(){
   randomEnd();
   drawImage("right");
 }
-
-document.onkeydown = checkKey;
+  document.onkeydown = checkKey;
