@@ -144,8 +144,7 @@ function canMoveThereGoal(x, y)
 function checkKey(e)
 {
     e = e || window.event;
-    collision = 0;
-
+    
     if(e.keyCode == left)
     {
         e.preventDefault();
@@ -225,7 +224,6 @@ function checkKey(e)
         xPlayer = 0;
         yPlayer = 0;
         wonGame = false;
-        speed = 1;
         console.log("Enter");
 
         drawMaze();
