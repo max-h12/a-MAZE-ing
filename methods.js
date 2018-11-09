@@ -36,7 +36,6 @@ function drawImage(pos){
               cP.drawImage(player, xPlayer, yPlayer, playerSize, playerSize);
           }
         }
-
         if(numberOfItems == numberCaught){
           wonGame = true;
           cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
@@ -144,7 +143,7 @@ function canMoveThereGoal(x, y)
 function checkKey(e)
 {
     e = e || window.event;
-    
+
     if(e.keyCode == left)
     {
         e.preventDefault();
@@ -249,11 +248,5 @@ function checkKey(e)
           speed++;
         }
     }
-
-    var curTime = new Date().getTime();
-    var timeLeft = Math.round((timeLimit - (0.001*(curTime - startTime)))*100)/100;
-    var remaining = numberOfItems - numberCaught;
-    document.getElementById("score").innerHTML = "REMINING GOALS: " + remaining;
-    document.getElementById("time").innerHTML = "TIME LEFT: " + timeLeft;
     document.getElementById("speed").innerHTML = "SPEED: " + speed;
 }
