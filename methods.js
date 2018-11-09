@@ -42,14 +42,14 @@ function drawImage(pos){
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
           document.getElementById("title").innerHTML = "Click The ENTER Key To Continue";
           //This image is tainting the canvas,  add another layer
-          // var winner = new Image();
-          // winner.onload = function()
-          // {
-          //   cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
-          // }
-          // winner.src = "img/win.jpg";
-
+          var winner = new Image();
+          winner.onload = function()
+          {
+            cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
+          }
+          winner.src = "img/win.jpg";
         }
+
 }
 
 /*Places the goal random in the maze*/
@@ -223,6 +223,7 @@ function checkKey(e)
         xPlayer = 0;
         yPlayer = 0;
         wonGame = false;
+        timeLeft = timeLimit;
         console.log("Enter");
 
         drawMaze();

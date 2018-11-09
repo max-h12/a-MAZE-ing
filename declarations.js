@@ -66,6 +66,11 @@ var numberCaught = 0;
 var endX=[];
 var endY=[];
 
+var startTime = new Date().getTime();
+var timeLimit = 5;
+var curTime;
+var timeLeft;
+
 /*Key Press Declarations*/
 var left = '37';
 var right = '39';
@@ -73,6 +78,3 @@ var up = '38';
 var down = '40';
 var plus = '187';
 var minus = '189';
-
-var startTime = new Date().getTime();
-var timeLimit = 30;
