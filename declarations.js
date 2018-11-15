@@ -39,7 +39,7 @@ var marginX;
 /*Maze Declarations*/
 
 var mazeWidth = 20;
-var mazeHeight = 15; //can we make this dynmic
+var mazeHeight = window.outerWidth/90; //can we make this dynmic
 
 
 /*Image Declarations*/
