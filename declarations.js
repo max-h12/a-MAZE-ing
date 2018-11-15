@@ -8,11 +8,14 @@ var cP = canvasPlayer.getContext("2d");
 var mazeDrawn = false;
 
 //set canvas size to size of webpage
-cM.canvas.width = window.innerWidth;
-cM.canvas.height = window.innerHeight;
+cM.canvas.width = window.outerWidth;
+cM.canvas.height = window.outerHeight;
 
-cP.canvas.width = window.innerWidth;
-cP.canvas.height = window.innerHeight;
+cP.canvas.width = window.outerWidth;
+cP.canvas.height = window.outerHeight;
+
+var actualMazeWidth;
+var actualMazeHeight;
 
 /*Player Declarations*/
 var speed = 1;
@@ -25,22 +28,18 @@ var sz = playerSize + 18;
 var xPlayer = 0;
 var yPlayer = 0;
 
+var maxX;
+var minX;
+var maxY;
+var minY;
+
+var marginY;
+var marginX;
+
 /*Maze Declarations*/
 
 var mazeWidth = 20;
-var mazeHeight = 20;
-
-var actualMazeWidth = (mazeWidth - 1) * sz;
-var actualMazeHeight = (mazeHeight - 1) * sz;
-
-var maxX =  cP.canvas.width*.5 + (actualMazeWidth*.5) - 2*sz;
-var minX = cP.canvas.width*.5 - (actualMazeWidth * .5) + sz ;
-var maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5) - 2*sz;
-var minY =  cP.canvas.height*.5 - (actualMazeHeight * .5) + sz;
-
-var marginX = ((cP.canvas.width) - (mazeWidth*sz))/2;
-var marginY = ((cP.canvas.height) - (mazeHeight*sz))/2 + cP.canvas.height/50;
-
+var mazeHeight = 15; //can we make this dynmic
 
 
 /*Image Declarations*/
@@ -67,7 +66,7 @@ var endX=[];
 var endY=[];
 
 var startTime = new Date().getTime();
-var timeLimit = 5;
+var timeLimit = 120;
 var curTime;
 var timeLeft;
 

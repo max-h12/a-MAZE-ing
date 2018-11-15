@@ -40,8 +40,8 @@ function drawImage(pos){
           wonGame = true;
           cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
-          document.getElementById("title").innerHTML = "Click The ENTER Key To Continue";
-          //This image is tainting the canvas,  add another layer
+          document.getElementById("title").innerHTML = "You Got Them ALL! Click The ENTER Key To Continue";
+          document.getElementById("score").innerHTML = "Score: " + calculateScore;
           var winner = new Image();
           winner.onload = function()
           {
@@ -50,6 +50,19 @@ function drawImage(pos){
           winner.src = "img/win.jpg";
         }
 
+}
+
+function calculateScore()
+{
+  var score;
+  if(numberCaught == 0)
+  {
+    score = 0;
+  }
+  else {
+    score = (numberOfItems/numberCaught) * (timeLimit-timeLeft) * 100;
+  }
+  return score;
 }
 
 /*Places the goal random in the maze*/
@@ -249,4 +262,25 @@ function checkKey(e)
           speed++;
         }
     }
+}
+
+function getUrlVars()
+{
+    var urlParams = new URLSearchParams(window.location.search);
+    var r = [urlParams.get('items'),urlParams.get('size')];
+
+  mazeWidth = r[1];
+
+  numberOfItems  = r[0];
+
+  actualMazeWidth = (mazeWidth - 1) * sz;
+  actualMazeHeight = (mazeHeight - 1) * sz;
+
+  maxX =  cP.canvas.width*.5 + (actualMazeWidth*.5) - 2*sz;
+  minX = cP.canvas.width*.5 - (actualMazeWidth * .5) + sz ;
+  maxY =  cP.canvas.height*.5 + (actualMazeHeight * .5) - 2*sz;
+  minY =  cP.canvas.height*.5 - (actualMazeHeight * .5) + sz;
+
+  marginX = ((cP.canvas.width) - (actualMazeWidth))/2;
+  marginY = ((cP.canvas.height) - (actualMazeHeight))/2;
 }

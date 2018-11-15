@@ -2,9 +2,8 @@ body{
 
 }
 
-#canvas{
-    /* Remove once finished designing game */
-    /*border:1px solid;*/
+#canvasPlayer{
+    margin-bottom: 10%;
 }
 
 #title{
@@ -36,6 +35,11 @@ body{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2vw;
+}
+
+#buttons
+{
+  margin-top: 5em;;
 }
 
 #score
