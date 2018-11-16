@@ -66,7 +66,7 @@ var endX=[];
 var endY=[];
 
 var startTime = new Date().getTime();
-var timeLimit = 120;
+var timeLimit = 10;
 var curTime;
 var timeLeft;
 

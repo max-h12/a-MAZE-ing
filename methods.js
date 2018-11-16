@@ -41,7 +41,7 @@ function drawImage(pos){
           cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
           cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
           document.getElementById("title").innerHTML = "You Got Them ALL! Click The ENTER Key To Continue";
-          document.getElementById("score").innerHTML = "Score: " + calculateScore;
+          document.getElementById("score").innerHTML = "Score: " + calculateScore();
           var winner = new Image();
           winner.onload = function()
           {
@@ -49,7 +49,6 @@ function drawImage(pos){
           }
           winner.src = "img/win.jpg";
         }
-
 }
 
 function calculateScore()
