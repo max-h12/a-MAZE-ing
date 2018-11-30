@@ -22,7 +22,7 @@ var speed = 10;
 var maxSpeed = 20;
 var minSpeed = 1;
 
-var playerSize = 21;
+var playerSize = 23;
 var sz = playerSize + 18;
 
 var xPlayer = 0;
