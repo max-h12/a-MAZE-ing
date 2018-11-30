@@ -18,7 +18,7 @@ var actualMazeWidth;
 var actualMazeHeight;
 
 /*Player Declarations*/
-var speed = 1;
+var speed = 10;
 var maxSpeed = 20;
 var minSpeed = 1;
 
@@ -66,7 +66,7 @@ var endX=[];
 var endY=[];
 
 var startTime = new Date().getTime();
-var timeLimit = 10;
+var timeLimit = 120;
 var curTime;
 var timeLeft;
 
