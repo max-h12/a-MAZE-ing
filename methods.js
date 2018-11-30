@@ -59,7 +59,7 @@ function calculateScore()
     score = 0;
   }
   else {
-    score = (numberOfItems/numberCaught) * (timeLimit-timeLeft) * 100;
+    score = (numberOfItems) * (timeLeft) * 1.5;
   }
   return score;
 }
