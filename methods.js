@@ -65,41 +65,38 @@ function calculateScore()
 }
 
 /*Places the goal random in the maze*/
-function randomEnd(){  //0 is end, 1 is player
+function randomPlaceGoals(){  //0 is end, 1 is player
   for(var i = 0; i<numberOfItems; i++){
     tempEndX = Math.floor(Math.random()*(maxX-minX)) + minX;
     tempEndY = Math.floor(Math.random()*(maxY-minY)) + minY;
-      while(!canMoveThereGoal(tempEndX,tempEndY))
-      {
-          tempEndX = Math.floor(Math.random() *(maxX-minX))+minX;
-          tempEndY = Math.floor(Math.random() *(maxY-minY)) + minY
-      }
-
-        endX[i] = tempEndX;
-        endY[i] = tempEndY;
-      }
+    while(!goalCanBePlaced(tempEndX,tempEndY))
+    {
+      tempEndX = Math.floor(Math.random() *(maxX-minX))+minX;
+      tempEndY = Math.floor(Math.random() *(maxY-minY)) + minY
+    }
+    endX[i] = tempEndX;
+    endY[i] = tempEndY;
+  }
 }
 
 /*Draw the main maze*/
 function drawMaze(){
 
+  cM.fillStyle = "white";
+  cM.fillRect(0, 0, canvasMaze.width, canvasMaze.height);
+  cM.fillStyle = "black";
 
-    cM.fillStyle = "white";
-    cM.fillRect(0, 0, canvasMaze.width, canvasMaze.height);
-    cM.fillStyle = "black";
-
-
-    var maze = require('maze');
-    var m = new maze.Backtracker(mazeWidth, mazeHeight);
-    m.reset();
-    m.generate();
-    for (var r = 0; r < m.height; r++) {
-         for (var c = 0; c < m.width; c++) {
-            if (m.get(r, c)) {
-                    cM.fillRect((c * sz) + marginX, (r * sz) + marginY, sz, sz);
-                }
-             }
-         }
+  var maze = require('maze');
+  var m = new maze.Backtracker(mazeWidth, mazeHeight);
+  m.reset();
+  m.generate();
+  for (var r = 0; r < m.height; r++) {
+    for (var c = 0; c < m.width; c++) {
+      if (m.get(r, c)) {
+        cM.fillRect((c * sz) + marginX, (r * sz) + marginY, sz, sz);
+      }
+    }
+  }
 }
 
 /*Returns true or false based on wheter a player
@@ -128,7 +125,7 @@ function canMoveThere(x, y)
 
 /*Checks if a goal can be placed at x,y
 True if yes.  False if no.*/
-function canMoveThereGoal(x, y)
+function goalCanBePlaced(x, y)
 {
     var canBeThere = true;
     //don't ask me why this works
@@ -222,7 +219,6 @@ function checkKey(e)
 
     if(e.keyCode == 13 && wonGame == true)
     {
-
         e.preventDefault();
 
         numberCaught = 0;
@@ -240,7 +236,7 @@ function checkKey(e)
 
         drawMaze();
 
-        randomEnd();
+        randomPlaceGoals();
         drawImage("right");
     }
 
@@ -265,8 +261,8 @@ function checkKey(e)
 
 function getUrlVars()
 {
-    var urlParams = new URLSearchParams(window.location.search);
-    var r = [urlParams.get('items'),urlParams.get('size')];
+  var urlParams = new URLSearchParams(window.location.search);
+  var r = [urlParams.get('items'),urlParams.get('size')];
 
   mazeWidth = r[1];
 

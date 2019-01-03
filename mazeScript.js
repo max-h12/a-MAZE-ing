@@ -1,19 +1,14 @@
 
 window.onload = function(){
-
   getUrlVars();
-
-
-
   drawMaze();
   randomEnd();
   drawImage("right");
-
 }
-  document.onkeydown = checkKey;
+
+document.onkeydown = checkKey;
 
 var x = setInterval(function() {
-
   if(!wonGame){
       var curTime = new Date().getTime();
       var remaining = numberOfItems-numberCaught;
@@ -34,6 +29,4 @@ var x = setInterval(function() {
         document.getElementById("title").innerHTML = "You Didn't Get Them All.";
         document.getElementById("score").innerHTML = "Score: " + calculateScore();
     }
-
-
 }, 100);
