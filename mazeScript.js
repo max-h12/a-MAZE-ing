@@ -2,7 +2,7 @@
 window.onload = function(){
   getUrlVars();
   drawMaze();
-  randomEnd();
+  randomPlaceGoals();
   drawImage("right");
 }
 
