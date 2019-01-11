@@ -1,5 +1,6 @@
 
 window.onload = function(){
+  setPlayerImage("dory");
   getUrlVars();
   drawMaze();
   randomPlaceGoals();
@@ -9,6 +10,9 @@ window.onload = function(){
 document.onkeydown = checkKey;
 
 var x = setInterval(function() {
+
+  checkForTheWin();
+
   if(!wonGame){
       var curTime = new Date().getTime();
       var remaining = numberOfItems-numberCaught;

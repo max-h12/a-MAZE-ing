@@ -1,3 +1,5 @@
+
+
 /* Redraws the goals and the player after every round.
 * Checks if the player got a goal piece and if the player won*/
 function drawImage(pos){
@@ -19,36 +21,54 @@ function drawImage(pos){
               if(pos == "left")
               {
                 player = playerL;
+
               }
               if(pos == "right")
               {
                 player = playerR;
+
               }
               if(pos == "up")
               {
                 player = playerU;
+
               }
               if(pos == "down")
               {
                 player = playerD;
+
               }
 
               cP.drawImage(player, xPlayer, yPlayer, playerSize, playerSize);
           }
         }
-        if(numberOfItems == numberCaught){
-          wonGame = true;
-          cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
-          cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
-          document.getElementById("title").innerHTML = "You Got Them ALL! Click The ENTER Key To Continue";
-          document.getElementById("score").innerHTML = "Score: " + calculateScore();
-          var winner = new Image();
-          winner.onload = function()
-          {
-            cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
-          }
-          winner.src = "img/win.jpg";
-        }
+}
+
+function checkForTheWin()
+{
+  if(numberOfItems == numberCaught){
+    wonGame = true;
+    cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
+    cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
+    document.getElementById("title").innerHTML = "You Got Them ALL! Click The ENTER Key To Continue";
+    document.getElementById("score").innerHTML = "Score: " + calculateScore();
+    var winner = new Image();
+    winner.onload = function()
+    {
+      cM.drawImage(winner,(canvasMaze.width-winner.width)/2, (canvasMaze.height-winner.height)/2);
+    }
+    winner.src = "img/win.jpg";
+  }
+}
+
+function setPlayerImage(player)
+{
+    picturePath = "img/" + player;
+    goal.src = picturePath + "/win.png";
+    playerU.src = picturePath + "/u.png";
+    playerR.src = picturePath + "/r.png";
+    playerD.src = picturePath + "/d.png";
+    playerL.src = picturePath + "/l.png";
 }
 
 function calculateScore()
@@ -81,7 +101,6 @@ function randomPlaceGoals(){  //0 is end, 1 is player
 
 /*Draw the main maze*/
 function drawMaze(){
-
   cM.fillStyle = "white";
   cM.fillRect(0, 0, canvasMaze.width, canvasMaze.height);
   cM.fillStyle = "black";
@@ -221,23 +240,7 @@ function checkKey(e)
     {
         e.preventDefault();
 
-        numberCaught = 0;
-
-        document.getElementById("title").innerHTML = "The A-MAZE-ing Game";
-
-        cP.clearRect(0, 0, canvasPlayer.width, canvasPlayer.height);
-        cM.clearRect(0, 0, canvasMaze.width, canvasMaze.height);
-
-        xPlayer = 0;
-        yPlayer = 0;
-        wonGame = false;
-        timeLeft = timeLimit;
-        console.log("Enter");
-
-        drawMaze();
-
-        randomPlaceGoals();
-        drawImage("right");
+        window.location = "menu.html";
     }
 
     if(e.keyCode == plus)

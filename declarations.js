@@ -44,19 +44,22 @@ var mazeHeight = window.outerWidth/90; //can we make this dynmic
 
 /*Image Declarations*/
 var playerU = new Image();
-playerU.src = "img/mouse/mouseU.png";
+
 
 var playerD = new Image();
-playerD.src = "img/mouse/mouseD.png";
+
 
 var playerR = new Image();
-playerR.src = "img/mouse/mouseR.png";
+
 
 var playerL = new Image();
-playerL.src = "img/mouse/mouseL.png";
+
 
 var goal = new Image();
-goal.src = "img/mouse/cheese.png";
+goal.src = "img/mouse/win.png";
+
+var picturePath = "";
+var picture = new Image();
 
 /*Goal and Game Player Declarations*/
 var wonGame = false;
