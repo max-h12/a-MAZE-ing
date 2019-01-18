@@ -8,4 +8,4 @@ var timeLimit = 120;
 var mazeWidth = 20;
 var mazeHeight = window.outerWidth/90; //can we make this dynmic
 
-var mazeColor = "blue";
+var mazeColor = "pink";

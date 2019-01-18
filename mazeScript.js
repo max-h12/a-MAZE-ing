@@ -20,7 +20,7 @@ var x = setInterval(function() {
     }
 
     if(timeLeft > 0 && !wonGame){
-      document.getElementById("time").innerHTML = "TIME LEFT: " + timeLeft;
+      document.getElementByClassName("time").innerHTML = "TIME LEFT: " + timeLeft;
       document.getElementById("score").innerHTML = "REMINING GOALS: " + remaining;
       document.getElementById("speed").innerHTML = "SPEED: " + speed;
     }
