@@ -101,7 +101,7 @@ function randomPlaceGoals(){  //0 is end, 1 is player
 function drawMaze(){
   cM.fillStyle = "white";
   cM.fillRect(0, 0, canvasMaze.width, canvasMaze.height);
-  cM.fillStyle = "black";
+  cM.fillStyle = mazeColor;
 
   var maze = require('maze');
   var m = new maze.Backtracker(mazeWidth, mazeHeight);
