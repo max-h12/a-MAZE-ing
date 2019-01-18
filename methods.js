@@ -144,6 +144,7 @@ function canMoveThere(x, y)
 True if yes.  False if no.*/
 function goalCanBePlaced(x, y)
 {
+  //hey
     var canBeThere = true;
     //don't ask me why this works
     if(x < maxX && x > minX && y < maxY && y > minY){
