@@ -1,15 +1,5 @@
-body{
-
-}
-
 #canvasPlayer #canvasMaze{
     margin-bottom: 10%;
-}
-
-#title{
-    font-family: sans-serif;
-    font-size: 40px;
-    text-align:center;
 }
 
 .wrapper
@@ -24,36 +14,7 @@ body{
     top: 0;
     left: 0;
 }
-
-.header
-{
-  background: red;
-  background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
-  background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
-  background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
-  background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 2vw;
-}
-
 #buttons
 {
-  margin-top: 5em;;
-}
-
-#score
-{
- background: cyan;
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
- font-size: 2vw;
-}
-
-#time
-{
- background: red;
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
- font-size: 2vw;
+  margin-top: 5em;
 }
