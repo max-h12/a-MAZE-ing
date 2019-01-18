@@ -77,7 +77,7 @@ function calculateScore()
     score = 0;
   }
   else {
-    score = (numberOfItems) * (timeLeft) * 1.5;
+    score = (numberOfItems) * 10;
   }
   return score;
 }
